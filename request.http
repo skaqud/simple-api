@@ -1,0 +1,6 @@
+GET http://localhost:9700/v1/simple
+
+GET http://localhost:8082/v1/simple
+
+
+GET http://localhost/v1/simple
