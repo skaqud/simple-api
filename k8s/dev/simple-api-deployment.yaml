@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
       - name: simple-api
-        #image: skaqud/simple-api  # on server
-        image: simple-api
+        image: skaqud/simple-api  # on server
+        # image: simple-api
         ports: 
         - name: http
           containerPort: 8080
