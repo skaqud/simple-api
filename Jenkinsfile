@@ -41,8 +41,8 @@ pipeline {
                         cd ./simple-api/blue-green
                         kustomize edit set image skaqud/simple-api:${TAG}
                         # 로컬외에는 주석 제거한다
-                        # git config --system user.email "admin@demo.com"
-                        # git config --system user.name "admin"
+                        git config --system user.email "admin@demo.com"
+                        git config --system user.name "admin"
                         git add .
                         git commit -am 'update image tag ${TAG}'
                         git remote set-url --push origin https://${GITHUB_TOKEN}@${gitOpsUrl}
