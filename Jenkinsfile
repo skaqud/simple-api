@@ -1,6 +1,6 @@
 def PROJECT_NAME = "simple-api"
 def gitUrl = "https://github.com/skaqud/${PROJECT_NAME}.git"
-// def imgRegistry = "https://registry.hub.docker.com"
+def imgRegistry = "https://registry.hub.docker.com"
 def gitOpsUrl = "github.com/skaqud/simple-gitops.git"
 def opsBranch = "master"
 /////////////////////////////
@@ -19,9 +19,9 @@ pipeline {
                         branches: [[name: "refs/tags/${TAG}"]]],
                     poll: false
                 script{
-                    // docker.withRegistry("${imgRegistry}","dockerhub-saturn203"){
-                    //     sh "skaffold build -p dev -t ${TAG}"
-                    // }
+                    docker.withRegistry("${imgRegistry}","dockerhub-skaqud"){
+                        sh "skaffold build -p dev -t ${TAG}"
+                    }
                     // mac local 일때만 사용 linux 환경에서는 docker.withRegistry 사용
                     sh "skaffold build -p dev -t ${TAG}"
                 }
