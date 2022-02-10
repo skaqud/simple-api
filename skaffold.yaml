@@ -16,7 +16,8 @@ profiles:
     deploy:
       kubectl:
         manifests:
-          - k8s/dev/*.yaml
+          - k8s/dev/ingress.yaml
+          - k8s/dev/simple-api-*.yaml 
     # portForward:
     # - resourceType: Service
     #   resourceName: simple-api-service
