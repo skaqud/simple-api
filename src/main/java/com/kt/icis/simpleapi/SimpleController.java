@@ -14,7 +14,7 @@ public class SimpleController {
 
     @GetMapping("/simple")
     public String getSimple() {
-        return "Simple-API Service77";
+        return "Simple-API Service88";
     }
     
 }
