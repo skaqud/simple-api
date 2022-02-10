@@ -2,7 +2,7 @@ def PROJECT_NAME = "simple-api"
 def gitUrl = "https://github.com/skaqud/${PROJECT_NAME}.git"
 def imgRegistry = "https://registry.hub.docker.com"
 def gitOpsUrl = "github.com/skaqud/simple-gitops.git"
-def opsBranch = "master"
+def opsBranch = "main"
 /////////////////////////////
 pipeline {
      environment {
@@ -38,7 +38,7 @@ pipeline {
                 git url: "https://${gitOpsUrl}", branch: "master" , credentialsId: "skaqud-github-token"
                 script{
                     sh """
-                        cd ./simple-api/bluegreen
+                        cd ./simple-api/blue-green
                         kustomize edit set image skaqud/simple-api:${TAG}
                         # 로컬외에는 주석 제거한다
                         # git config --system user.email "admin@demo.com"
