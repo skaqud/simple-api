@@ -1,7 +1,7 @@
 def PROJECT_NAME = "simple-api"
-def gitUrl = "https://github.com/io203/${PROJECT_NAME}.git"
+def gitUrl = "https://github.com/skaqud/${PROJECT_NAME}.git"
 // def imgRegistry = "https://registry.hub.docker.com"
-def gitOpsUrl = "github.com/io203/simple-gitOps.git"
+def gitOpsUrl = "github.com/skaqud/simple-gitops.git"
 def opsBranch = "master"
 /////////////////////////////
 pipeline {
@@ -15,7 +15,7 @@ pipeline {
                 checkout scm: [
                         $class: "GitSCM",
                         userRemoteConfigs: [[url: "${gitUrl}",
-                        credentialsId: "io203-github-token" ]],
+                        credentialsId: "skaqud-github-token" ]],
                         branches: [[name: "refs/tags/${TAG}"]]],
                     poll: false
                 script{
@@ -35,11 +35,11 @@ pipeline {
         stage('GitOps update') {
             steps{
                 print "======kustomization.yaml tag update====="
-                git url: "https://${gitOpsUrl}", branch: "master" , credentialsId: "io203-github-token"
+                git url: "https://${gitOpsUrl}", branch: "master" , credentialsId: "skaqud-github-token"
                 script{
                     sh """
                         cd ./simple-api/bluegreen
-                        kustomize edit set image saturn203/simple-api:${TAG}
+                        kustomize edit set image skaqud/simple-api:${TAG}
                         # 로컬외에는 주석 제거한다
                         # git config --system user.email "admin@demo.com"
                         # git config --system user.name "admin"
