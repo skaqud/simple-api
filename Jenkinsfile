@@ -35,7 +35,7 @@ pipeline {
         stage('GitOps update') {
             steps{
                 print "======kustomization.yaml tag update====="
-                git url: "https://${gitOpsUrl}", branch: "master" , credentialsId: "skaqud-github-token"
+                git url: "https://${gitOpsUrl}", branch: "main" , credentialsId: "skaqud-github-token"
                 script{
                     sh """
                         cd ./simple-api/blue-green
