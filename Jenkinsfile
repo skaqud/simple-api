@@ -15,11 +15,11 @@ pipeline {
                 checkout scm: [
                         $class: "GitSCM",
                         userRemoteConfigs: [[url: "${gitUrl}",
-                        credentialsId: "git-credential" ]],
+                        credentialsId: "git-credential" ]],     //credential 이름이 jenkins에 등록된 이름과 동일해야 함
                         branches: [[name: "refs/tags/${TAG}"]]],
                     poll: false
                 script{
-                    docker.withRegistry("${imgRegistry}","imageRegistry-credential"){
+                    docker.withRegistry("${imgRegistry}","imageRegistry-credential"){   //credential 이름이 jenkins에 등록된 이름과 동일해야 함, jenkins에 docker deploy 권한 필요
                         sh "skaffold build -p dev -t ${TAG}"
                     }
                     // mac local 일때만 사용 linux 환경에서는 docker.withRegistry 사용
@@ -35,7 +35,7 @@ pipeline {
         stage('GitOps update') {
             steps{
                 print "======kustomization.yaml tag update====="
-                git url: "https://${gitOpsUrl}", branch: "main" , credentialsId: "skaqud-github-token"
+                git url: "https://${gitOpsUrl}", branch: "main" , credentialsId: "git-credential"
                 script{
                     sh """
                         cd ./simple-api/blue-green
