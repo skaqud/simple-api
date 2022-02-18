@@ -45,7 +45,7 @@ pipeline {
                         git config --global user.name "admin"
                         git add .
                         git commit -am 'update image tag ${TAG}'
-                        git remote set-url --push origin https://skaqud@${gitOpsUrl}
+                        git remote set-url --push origin https://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@${gitOpsUrl}
                         git push origin ${opsBranch}
                     """
                  }
