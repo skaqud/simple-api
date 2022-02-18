@@ -15,11 +15,11 @@ pipeline {
                 checkout scm: [
                         $class: "GitSCM",
                         userRemoteConfigs: [[url: "${gitUrl}",
-                        credentialsId: "skaqud-github-token" ]],
+                        credentialsId: "git-credential" ]],
                         branches: [[name: "refs/tags/${TAG}"]]],
                     poll: false
                 script{
-                    docker.withRegistry("${imgRegistry}","dockerhub-skaqud"){
+                    docker.withRegistry("${imgRegistry}","imageRegistry-credential"){
                         sh "skaffold build -p dev -t ${TAG}"
                     }
                     // mac local 일때만 사용 linux 환경에서는 docker.withRegistry 사용
