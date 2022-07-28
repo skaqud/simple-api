@@ -4,4 +4,6 @@
 
 add readme function 변경사항2
 
-release 변경사항3
+release 변경사항
+
+release 변경사항 두번째
